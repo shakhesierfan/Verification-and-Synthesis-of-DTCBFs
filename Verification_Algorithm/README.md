@@ -4,21 +4,7 @@ This repository provides the code for the **verification algorithm** presented i
 
 **"Verification and Synthesis of Discrete-Time Control Barrier Functions"**
 
-The implementation focuses on verifying discrete-time control barrier functions (DTCBFs) and includes an application to the **cart-pole system**, a widely used benchmark in nonlinear control.
-
----
-
-## 🔹 Contents
-- **Verification Algorithm** – Python code for checking the validity of DTCBFs.  
-- **Cart-Pole Example** – Simulation of the cart-pole system using the verified barrier function.  
-
----
-
-## 🔹 Purpose
-This repository serves as a reproducible reference for researchers and practitioners interested in:
-- Safe control design  
-- Control Barrier Functions (CBFs)  
-- Verification and synthesis for discrete-time systems  
+The implementation verifies whether a candidate discrete-time control barrier function (DTCBF) is valid, even when the associated control policy is unknown. The approach is demonstrated on the **cart-pole system**/
 
 ---
 
