@@ -13,7 +13,6 @@ fprintf(fid, 'bonmin.node_limit 1000\n');
 fprintf(fid, 'bonmin.time_limit 10\n');
 fclose(fid);
 
-%initial_dx = node(1).domain_x;
 initial_dy = node(1).domain_y;
 
 init_lb_vals = [initial_dy(1:2:8)];
@@ -72,10 +71,6 @@ ampl = AMPL();
 ampl.read('outer_F_lb_computed.mod');
 ampl.readData('outer_F_lb_computed.dat');
 ampl.setOption('solver', 'couenne');
-%ampl.setOption('scip_options', 'timelimit=15')
-
-%ampl.setOption('couenne_options', 'max_iter= 5');
-%ampl.setOption('couenne_options', 'bonmin.node_limit=1000')
 ampl.setOption('log_file', 'outer_F_lb_log.log');
 ampl.solve();
 
@@ -96,23 +91,6 @@ if stat == "infeasible"
     x_min =[];
     y_min = [];
 else
-    %{
-    if ~isempty(idx)
-        line = lines(idx);
-        % Extract the numeric value after 'Lower bound:'
-        tokens = regexp(line, 'Lower bound:\s*(-?[\d\.eE+-]+)', 'tokens');
-        if ~isempty(tokens)
-            lb_str = tokens{1}{1};
-            F_lb = -str2double(lb_str);
-            fprintf('Extracted lower bound: %g\n', F_lb);
-        else
-            warning('Could not parse lower bound number.');
-        end
-    else
-        warning('Lower bound line not found in the log.');
-        F_lb = node(k).F_lb;
-    end
-    %}
     F_lb = -obj_val;
     x_var = ampl.getVariable('x');
     x_values = x_var.getValues();    
@@ -125,10 +103,6 @@ else
     y_min = [];
 
 end
-
-%x_min = x_values.value(ismember(x_values.index, [1, 2, 3]));
-%y_min = x_values.value(ismember(x_values.index, [4, 5, 6, 7]));
-
 
 
 end
