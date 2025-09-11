@@ -12,10 +12,10 @@ param.L = 1;
 param.g = 9.81;
 param.u_max = 35;
 
-% Initial domain for the upper-level (x-variables)
+% Initial domain for the upper-level of the root note
 d_x = [-30 30 -30 30 -30 30 -30 30 -30 30 -5 -0.1 -5 -0.1 -2 -0.1 0.1 1 0.1 1];
 
-% Domain for the lower-level (y-variables)
+% Initial domain for the lower-level of the root note
 d_y = [-pi/4 pi/4 -pi/4 pi/4 -pi/4 pi/4 -pi/4 pi/4];
 
 
@@ -33,22 +33,22 @@ node(1) = struct('f_lb', [], 'f1_ub', [], 'f2_ub', [], 'F_lb', [], 'x', [], 'dep
 
 %% List management --------------------------------------------------------
 
-L = 1;            % List of open nodes
-L_in = [];        % List of outer-fathomed nodes
-nodesL_p{1} = 1;  % Sublist for the root node
-n_node = 1;       % Total number of nodes created
+L = 1;       % List of open nodes
+L_in = [];   % List of outer-fathomed nodes
+L_p{1} = 1;  % Sublist for the root node
+n_node = 1;  % Total number of nodes created
 
 % Initialize the root node for both Outer and Inner problems
 
 [f_lb] = f_lb_computed (node, 1, param); % Computing Inner lower bounding problem for the root node
 [f1_ub, f2_ub] = f_ub_computed (node, 1, param);  % Computing Inner upper bounding problem for the root node
-[F_lb, x_min, y_min] = outer_F_lb_computed (f1_ub, f2_ub, node, 1, u_max, epsilon_f, param); % Computing Outer lower bounding problem for the root node
+[F_lb, x_min, y_min] = outer_F_lb_computed (f1_ub, f2_ub, node, 1, epsilon_f, param); % Computing Outer lower bounding problem for the root node
 
 node(1) = struct('f_lb', f_lb, 'f1_ub', f1_ub, 'f2_ub', f2_ub, 'F_lb', F_lb, 'x', x_min, 'depth', 0, 'domain_x', d_x, 'domain_y', d_y);
 
 if (isempty(x_min) == 0) && (x_min(1) ~= 0 || x_min(2) ~= 0 || x_min(3) ~= 0 || ...
      x_min(4) ~= 0 || x_min(5) ~= 0 || x_min(6) ~= 0)
-    [w1_sol, w2_sol] = w_sol_computer (node, x_min); % DTCBF valid ⇔ w1_sol ≥ 0; policy admissible ⇔ -w2_sol ≤ u_max^2
+    [w1_sol, w2_sol] = w_sol_computer (node, x_min, param); % DTCBF valid ⇔ w1_sol ≥ 0; policy admissible ⇔ -w2_sol ≤ u_max^2
     if w1_sol >= 0 && -w2_sol <= param.u_max^2
         solution_F_UB = F_lb;
         solution_x = x_min;
@@ -73,7 +73,7 @@ while(isempty(L) == 0)
 
     [k_sel, k_in_sel] = selection_process (node, L, L_in, L_p); % Select one node from open list and one from outer-fathomed list
 
-    if node(k_sel).F_lb < solution_F_UB - epsilon_F
+    if node(k_sel).F_lb < solution_F_UB - epsilon_F  % Checking Outer-fathoming rules
     
             index_k_sel = find(k_sel == L);
             L(index_k_sel) = [];
@@ -89,13 +89,13 @@ while(isempty(L) == 0)
             [L_p, node] = update_list(L_p, node, k_sel, k_in_sel); % Subdivision process and List management
 
             for l_outer = n_node+1:n_node + n_new
-                [node(l_outer).f_lb] = f_lb_computed(node, l_outer);
+                [node(l_outer).f_lb] = f_lb_computed(node, l_outer, param);
         
                 [p] = find_p(L_p, l_outer);
                 if isempty(p) == 0
                     [new_best_f1_ub,new_best_f2_ub] = new_updating_f_ub_k(node, L_p, l_outer);
                     
-                    if node(l_outer).f_lb <= new_best_f1_ub + new_best_f2_ub && node(l_outer).f_lb ~= inf
+                    if node(l_outer).f_lb <= new_best_f1_ub + new_best_f2_ub && node(l_outer).f_lb ~= inf % Checking Inner-fathoming rules
                         if l_outer <= n_node + 2
                             L = [L l_outer];
                         else
@@ -104,7 +104,7 @@ while(isempty(L) == 0)
                     end
                 end
                 if isempty(intersect(l_outer, L)) == 0 || isempty(intersect(l_outer, L_in)) == 0
-                    [node(l_outer).f1_ub, node(l_outer).f2_ub] = f_ub_computed(node, l_outer);
+                    [node(l_outer).f1_ub, node(l_outer).f2_ub] = f_ub_computed(node, l_outer, param);
                     
                 end
             
@@ -126,9 +126,9 @@ while(isempty(L) == 0)
                     [p] = find_p(L_p, l_outer);
                     [new_best_f1_ub,new_best_f2_ub] = new_updating_f_ub_k(node, L_p, l_outer);
                     
-                    [F_lb, x_min, y_min] = outer_F_lb_computed (new_best_f1_ub, new_best_f2_ub, node, l_outer, u_max, epsilon_f);
+                    [F_lb, x_min, y_min] = outer_F_lb_computed (new_best_f1_ub, new_best_f2_ub, node, l_outer, epsilon_f, param);
         
-                    if F_lb ~= inf && F_lb < solution_F_UB - epsilon_F
+                    if F_lb ~= inf && F_lb < solution_F_UB - epsilon_F  % Checking Outer-fathoming rules
                         node(l_outer).F_lb = F_lb;
                         node(l_outer).x = x_min;
                         bool_test = 0;
@@ -148,9 +148,9 @@ while(isempty(L) == 0)
                 
                     if (isempty(x_min) == 0) && (x_min(1) ~= 0 || x_min(2) ~= 0 || x_min(3) ~= 0 || x_min(4) ~= 0 || x_min(5) ~= 0 || x_min(6) ~= 0)
             
-                        [w1_sol, w2_sol] = w_sol_computer (node, node(l_outer).x);
+                        [w1_sol, w2_sol] = w_sol_computer (node, node(l_outer).x, param);
     
-                        if w1_sol >= 0 && -w2_sol <= u_max^2
+                        if w1_sol >= 0 && -w2_sol <= param.u_max^2
                             
                             solution_F_UB = F_lb;
                             solution_x = x_min;
@@ -180,4 +180,3 @@ while(isempty(L) == 0)
             [L_p, L_in] = list_del_fath(L, L_in, L_p, p, []);
     end
 end
-
