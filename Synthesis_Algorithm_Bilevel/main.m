@@ -10,7 +10,7 @@ param.mc = 2;
 param.mp = 0.1; 
 param.L = 1; 
 param.g = 9.81;
-param.u_max = 35;
+param.u_max = 25;
 
 % Initial domain for the outer problem of the root note
 d_x = [-30 30 -30 30 -30 30 -30 30 -30 30 -5 -0.1 -5 -0.1 -2 -0.1 0.1 1 0.1 1];
