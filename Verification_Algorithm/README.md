@@ -11,7 +11,7 @@ The implementation verifies whether a candidate discrete-time control barrier fu
 ## 🔹 Citation
 If you use this code in your work, please cite the original paper:
 
-*Shakhesi, E., et al. "Verification and Synthesis of Discrete-Time Control Barrier Functions." [Paper details]*
+*Shakhesi, E., et al. "Verification and Synthesis of Discrete-Time Control Barrier Functions."*
 
 ---
 
