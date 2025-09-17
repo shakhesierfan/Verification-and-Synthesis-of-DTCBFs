@@ -1,4 +1,4 @@
-function [L_p, node] = update_list(L_p, node, k_sel, k_in_sel)
+function [L_p, node] = update_list(L_p, node, k_sel, k_in_sel, priority_outer)
     
     p_stored = zeros(2, 1);
     size_x = size(node(1).domain_x, 2);
@@ -15,7 +15,7 @@ function [L_p, node] = update_list(L_p, node, k_sel, k_in_sel)
             end
         end
         [do_1, do_2, num_var_sel] = dividing_process([node(num_node_sel).domain_x node(num_node_sel).domain_y]', ...
-                                                    [node(1).domain_x node(1).domain_y]');
+                                                    [node(1).domain_x node(1).domain_y]', size_x, priority_outer);
         counter_node = size(node, 2);
         if m == 1
             node(counter_node + 1) = struct('f_lb', node(num_node_sel).f_lb, 'f1_ub', node(num_node_sel).f1_ub, 'f2_ub', node(num_node_sel).f2_ub, 'F_lb', ...
