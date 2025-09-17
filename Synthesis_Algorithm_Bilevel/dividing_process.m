@@ -1,11 +1,17 @@
-function [domain_new_first, domain_new_second, number_selected] = dividing_process(domain, domain_initial)
+function [domain_new_first, domain_new_second, number_selected] = dividing_process(domain, domain_initial, size_x, priority_outer)
 
     number_selected = 1;
     max_dividing = 0;
     
-    for i = size(domain, 1)/2:-1:1
+    for i = 1:1:size(domain, 1)/2           %size(domain, 1)/2   *********
         
-        if (domain(2*i) - domain(2*i - 1))/(domain_initial(2*i) - domain_initial(2*i - 1)) > max_dividing
+        if i <= size_x/2
+            coeff_priorty = 1;
+        else
+            coeff_priorty = priority_outer;
+        end
+            
+        if (domain(2*i) - domain(2*i - 1)) /(domain_initial(2*i) - domain_initial(2*i - 1)) > max_dividing*coeff_priorty
             max_dividing = (domain(2*i) - domain(2*i - 1))/(domain_initial(2*i) - domain_initial(2*i - 1));
             number_selected = i;
         end
