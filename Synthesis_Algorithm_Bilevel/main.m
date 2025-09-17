@@ -12,10 +12,10 @@ param.L = 1;
 param.g = 9.81;
 param.u_max = 35;
 
-% Initial domain for the upper-level of the root note
+% Initial domain for the outer problem of the root note
 d_x = [-30 30 -30 30 -30 30 -30 30 -30 30 -5 -0.1 -5 -0.1 -2 -0.1 0.1 1 0.1 1];
 
-% Initial domain for the lower-level of the root note
+% Initial domain for the inner problem of the root note
 d_y = [-pi/4 pi/4 -pi/4 pi/4 -pi/4 pi/4 -pi/4 pi/4];
 
 
@@ -23,6 +23,19 @@ d_y = [-pi/4 pi/4 -pi/4 pi/4 -pi/4 pi/4 -pi/4 pi/4];
 epsilon_F   = 0.2;
 epsilon_f   = 1e-5;
 
+% Branching priority
+% The variable 'priority_outer' determines the branching order between the 
+% outer and inner domains. 
+%   - If priority_outer = 1: the outer and inner domains are divided 
+%     sequentially. 
+%   - If priority_outer > 1: higher values assign more priority to dividing 
+%     the outer domain into smaller subdomains.
+priority_outer = 2;
+
+
+% Disable computation of the inner lower bound 
+% (too loose for some examples). Set to 1 = off, 0 = on.
+deactiv_f_lb = 1;
 
 %% Node structure definition ----------------------------------------------
 % Each node stores information about a subdomain of the bilevel problem.
@@ -40,7 +53,11 @@ n_node = 1;  % Total number of nodes created
 
 % Initialize the root node for both Outer and Inner problems
 
-[f_lb] = f_lb_computed (node, 1, param); % Computing Inner lower bounding problem for the root node
+if deactiv_f_lb == 0
+    [f_lb] = f_lb_computed (node, 1, param); % Computing Inner lower bounding problem for the root node
+else
+    f_lb = -100;
+end
 [f1_ub, f2_ub] = f_ub_computed (node, 1, param);  % Computing Inner upper bounding problem for the root node
 [F_lb, x_min, y_min] = outer_F_lb_computed (f1_ub, f2_ub, node, 1, epsilon_f, param); % Computing Outer lower bounding problem for the root node
 
@@ -86,10 +103,14 @@ while(isempty(L) == 0)
                 n_new = 2; % Number of newly generated nodes
             end
             
-            [L_p, node] = update_list(L_p, node, k_sel, k_in_sel); % Subdivision process and List management
+            [L_p, node] = update_list(L_p, node, k_sel, k_in_sel, priority_outer); % Subdivision process and List management
 
             for l_outer = n_node+1:n_node + n_new
-                [node(l_outer).f_lb] = f_lb_computed(node, l_outer, param);
+                if deactiv_f_lb == 0
+                    [node(l_outer).f_lb] = f_lb_computed(node, l_outer, param);
+                else
+                    node(l_outer).f_lb = -100;
+                end
         
                 [p] = find_p(L_p, l_outer);
                 if isempty(p) == 0
