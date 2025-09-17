@@ -9,7 +9,7 @@ fclose(fid);
 fid = fopen(optFilePath, 'w');
 %fprintf(fid, 'feasibility_bt no\n');
 %fprintf(fid, 'acceptable_constr_viol_tol 1e-10\n');
-fprintf(fid, 'bonmin.node_limit 1000\n');
+fprintf(fid, 'bonmin.node_limit 650\n');
 fprintf(fid, 'bonmin.time_limit 10\n');
 fclose(fid);
 
@@ -86,7 +86,7 @@ lines = readlines('outer_F_lb_log.log');
 idx = find(contains(lines, 'Lower bound:'), 1);
 
 
-if stat == "infeasible"
+if stat == "infeasible" || obj_val == 0
     F_lb = inf;
     x_min =[];
     y_min = [];
