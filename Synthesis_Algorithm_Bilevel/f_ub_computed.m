@@ -13,8 +13,8 @@ fprintf(fid, 'feasibility_bt no\n');
 fprintf(fid, 'redcost_bt no\n');
 fprintf(fid, 'aggressive_fbbt no\n');
 fprintf(fid, 'optimality_bt no\n');
-fprintf(fid, 'bonmin.node_limit 500\n');
-fprintf(fid, 'bonmin.time_limit 10\n');
+fprintf(fid, 'bonmin.node_limit 200\n');
+fprintf(fid, 'bonmin.time_limit 8\n');
 fclose(fid);
 
 dx = node(k).domain_x;
