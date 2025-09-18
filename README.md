@@ -14,7 +14,6 @@ This repository provides implementations of methods for:
 2. **Synthesis of DTCBFs and corresponding control policies**  
    - A bilevel optimization approach for synthesizing both a DTCBF and a control policy in finite time.  
    - Determines unknown coefficients of parameterized DTCBFs and policies.  
-   - Includes strategies to reduce the computational burden.  
 
 We demonstrate the methods using **numerical case studies**, in particular the **cart-pole system**.
 
