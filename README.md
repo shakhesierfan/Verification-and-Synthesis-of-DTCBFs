@@ -33,7 +33,7 @@ Both are demonstrated on the discretized cart-pole system, explained below.
 The cart-pole dynamics are 
 
 
-![Cart-Pole Dynamics](cart_pole.png)
+![Cart-Pole Dynamics](cart-pole.png)
 
 
 **State variables**  
