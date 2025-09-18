@@ -24,7 +24,7 @@ We demonstrate the methods using **numerical case studies**, in particular the *
 - `verification_DTCBFs/` → Code for the verification algorithm.  
 - `synthesis_DTCBFs_bilevel/` → Code for the synthesis algorithm.  
 
-Both are demonstrated on the discretized cart-pole system.  
+Both are demonstrated on the discretized cart-pole system, explained below.
 
 ---
 
