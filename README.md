@@ -65,9 +65,11 @@ We then verify whether the synthesized DTCBF is valid through the verification p
 
 ---
 
-## How to Use
+If you find this code useful, please cite our paper
 
-1. Clone the repository:  
-   ```bash
-   git clone https://github.com/your-username/DTCBFs.git
-   cd DTCBFs
+@article{Shakhesi2025DTCBFs,
+  title     = {Verification and Synthesis of Discrete-Time Control Barrier Functions (DTCBFs)},
+  author    = {Erfan Shakhesi and W.P.M.H. (Maurice) Heemels and Alexander Katriniok},
+  journal   = {To appear},
+  year      = {2025}
+}
