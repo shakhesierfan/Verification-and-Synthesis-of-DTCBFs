@@ -31,7 +31,12 @@ Both are demonstrated on the discretized cart-pole system.
 
 ## Cart-Pole Example
 
-The cart-pole dynamics follow the discretization used in [Neural-Lyapunov](https://arxiv.org/abs/2006.10221).  
+The cart-pole dynamics are 
+
+x_c⁺ = x_c + v_c * T_s
+v_c⁺ = v_c + T_s * (u + m_p * sin(θ) * (L * ω² - g * cos(θ))) / (m_c + m_p * sin²(θ))
+θ⁺ = θ + ω * T_s
+ω⁺ = ω + T_s * (-u * cos(θ) - m_p * L * ω² * cos(θ) * sin(θ) + (m_c + m_p) * g * sin(θ)) / (L * (m_c + m_p * sin²(θ)))
 
 **State variables**  
 - `x_c` – horizontal cart position  
@@ -48,12 +53,14 @@ The cart-pole dynamics follow the discretization used in [Neural-Lyapunov](https
 - Pole length: `L = 1 m`  
 - Sampling time: `T_s = 0.01 s`  
 
+We require the pole angle and angular velocity to remain bounded within:
+
 **Safe set**  
 \[
 \mathcal{S} = \{ x \in \mathbb{R}^4 \mid θ^2 + ω^2 \leq (\pi/4)^2 \}
 \]
 
-Our goal is to **synthesize a function `h` (DTCBF) and a control policy `π`** such that `(h, γ)` together with `π` ensures safety of the discretized cart-pole system.  
+Our goal is to **synthesize a function `h` (DTCBF) and a control policy `π`** such that `(h, id)` together with `π` ensures safety of the discretized cart-pole system.  
 We then verify whether the synthesized DTCBF is valid through the verification procedure.  
 
 ---
