@@ -32,21 +32,17 @@ Both are demonstrated on the discretized cart-pole system, explained below.
 
 The cart-pole dynamics are 
 
-$$
-\begin{bmatrix}
+
+$$\begin{bmatrix}
     x_c^+ \\
     v_c^+ \\
     \theta^+ \\
     \omega^+
 \end{bmatrix}
-=
-\begin{bmatrix}
-    x_c + v_c T_s \\
-    v_c + \dfrac{T_s\left(u + m_p \sin\theta \, (L\omega^2 - g\cos \theta)\right)}{m_c + m_p \sin^2 \theta} \\
-    \theta + \omega T_s \\
-    \omega + \dfrac{T_s\left(-u\cos \theta - m_pL\omega^2 \cos\theta \, \sin \theta + (m_c + m_p)g \sin \theta\right)}{L(m_c + m_p \sin^2 \theta)}
-\end{bmatrix}
+
 $$
+
+
 **State variables**  
 - `x_c` – horizontal cart position  
 - `v_c` – cart velocity  
