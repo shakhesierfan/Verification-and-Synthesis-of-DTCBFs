@@ -33,14 +33,7 @@ Both are demonstrated on the discretized cart-pole system, explained below.
 The cart-pole dynamics are 
 
 
-$$\begin{bmatrix}
-    x_c^+ \\
-    v_c^+ \\
-    \theta^+ \\
-    \omega^+
-\end{bmatrix}
-
-$$
+![Cart-Pole Dynamics](cart_pole.png)
 
 
 **State variables**  
