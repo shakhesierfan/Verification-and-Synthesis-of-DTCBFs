@@ -70,6 +70,6 @@ If you find this code useful, please cite our paper
 @article{Shakhesi2025DTCBFs,
   title     = {Verification and Synthesis of Discrete-Time Control Barrier Functions (DTCBFs)},
   author    = {Erfan Shakhesi and W.P.M.H. (Maurice) Heemels and Alexander Katriniok},
-  journal   = {To appear},
+  journal   = {IEEE Transactions on Automatic Control},
   year      = {2025}
 }
