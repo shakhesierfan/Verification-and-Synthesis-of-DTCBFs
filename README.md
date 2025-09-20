@@ -54,9 +54,9 @@ The cart-pole dynamics are
 We require the pole angle and angular velocity to remain bounded within:
 
 **Safe set**  
-\[
-\mathcal{S} = \{ x \in \mathbb{R}^4 \mid θ^2 + ω^2 \leq (\pi/4)^2 \}
-\]
+
+S = { x \in R^4 | θ^2 + ω^2 <= (pi/4)^2 }
+
 
 Our goal is to **synthesize a function `h` (DTCBF) and a control policy `π`** such that `(h, id)` together with `π` ensures safety of the discretized cart-pole system.  
 We then verify whether the synthesized DTCBF is valid through the verification procedure.  
