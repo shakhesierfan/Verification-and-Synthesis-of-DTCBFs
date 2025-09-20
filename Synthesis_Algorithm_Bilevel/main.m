@@ -10,7 +10,7 @@ param.mc = 2;
 param.mp = 0.1; 
 param.L = 1; 
 param.g = 9.81;
-param.u_max = 25;
+param.u_max = 35;
 
 % Initial domain for the outer problem of the root note
 d_x = [-30 30 -30 30 -30 30 -30 30 -30 30 -5 -0.1 -5 -0.1 -2 -0.1 0.1 1 0.1 1];
@@ -177,7 +177,8 @@ while(isempty(L) == 0)
                             solution_x = x_min;
                             fprintf('****A valid DTCBF with a corresponding control policy is found****\n');
                             fprintf('DTCBF:  %.4f*omega^2 + %.4f*theta^2 + %.4f*theta*omega + %.4f*omega + %.4f*theta + 1 \n', x_min(6), x_min(7), x_min(8), x_min(9), x_min(10)');
-                            fprintf('Control Policy:  %.4f*omega^2 + %.4f*theta^2 + %.4f*theta*omega + %.4f*omega + %.4f*theta \n', x_min(1), x_min(2), x_min(3), x_min(4), x_min(5)')
+                            fprintf('Control Policy:  %.4f*omega^2 + %.4f*theta^2 + %.4f*theta*omega + %.4f*omega + %.4f*theta \n', x_min(1), x_min(2), x_min(3), x_min(4), x_min(5)');
+                            fprintf('Final Control Admissible set: [-%.4f, %.4f]\n', sqrt(-w2_sol), sqrt(-w2_sol)');
                             % Wait for user
                             input('If you would like to continue and find a DTCBF with a larger zero-superlevel set, press Enter to continue...','s');    
     
