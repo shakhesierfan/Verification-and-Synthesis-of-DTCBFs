@@ -17,9 +17,14 @@ For installation instructions, please refer to the [AMPL MATLAB interface docume
 
 
 ## 🔹 Citation
-If you use this code in your work, please cite the original paper:
+If you find this code useful, please cite our paper
 
-*Shakhesi, E., et al. "Verification and Synthesis of Discrete-Time Control Barrier Functions." [Paper details]*
+@article{Shakhesi2025DTCBFs,
+  title     = {Verification and Synthesis of Discrete-Time Control Barrier Functions (DTCBFs)},
+  author    = {Erfan Shakhesi and W.P.M.H. (Maurice) Heemels and Alexander Katriniok},
+  journal   = {IEEE Transactions on Automatic Control},
+  year      = {2025}
+}
 
 ---
 
