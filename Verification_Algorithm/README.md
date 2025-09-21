@@ -5,7 +5,9 @@ The implementation verifies whether a given candidate DTCBF is valid, when a cor
 ---
 
 
-This code has been tested on Ubuntu 22.04 using Python 3.10 (Anaconda) with the required packages installed (e.g., NumPy, PyInterval, Matplotlib, etc.).
+This code has been tested on Ubuntu 22.04 with Python 3.10 (Anaconda) and the required Python packages (e.g., NumPy, PyInterval, Matplotlib, etc.).  
+In addition, AMPL with the Couenne solver is required. For installation instructions, please refer to the [AMPL Python documentation](https://dev.ampl.com/ampl/python/index.html).
+
 
 
 ## 🔹 Citation
