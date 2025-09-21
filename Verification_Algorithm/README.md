@@ -1,4 +1,4 @@
-# Verification and Synthesis of Discrete-Time Control Barrier Functions
+% # Verification and Synthesis of Discrete-Time Control Barrier Functions
 
 This repository provides the code for the **verification algorithm** presented in the paper "Verification and Synthesis of Discrete-Time Control Barrier Functions".
 
