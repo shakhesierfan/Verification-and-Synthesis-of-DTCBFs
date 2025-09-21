@@ -8,6 +8,10 @@ The implementation verifies whether a candidate discrete-time control barrier fu
 
 ---
 
+
+This code has been tested on Ubuntu 22.04 using Python 3.10 (Anaconda) with the required packages installed (e.g., NumPy, PyInterval, Matplotlib, etc.).
+
+
 ## 🔹 Citation
 If you use this code in your work, please cite the original paper:
 
