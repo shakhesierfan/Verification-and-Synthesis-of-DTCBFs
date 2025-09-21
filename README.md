@@ -15,8 +15,6 @@ This repository provides implementations of methods for:
    - A bilevel optimization approach for synthesizing both a DTCBF and a control policy in finite time.  
    - Determines unknown coefficients of parameterized DTCBFs and policies.  
 
-We demonstrate the methods using **numerical case studies**, in particular the **cart-pole system**.
-
 ---
 
 ## Repository Structure
