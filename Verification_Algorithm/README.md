@@ -1,4 +1,5 @@
-This repository provides the code for the **verification algorithm** presented in the paper "Verification and Synthesis of Discrete-Time Control Barrier Functions".
+This repository provides the code for the **verification algorithm** presented in the paper 
+"Verification and Synthesis of Discrete-Time Control Barrier Functions".
 
 The implementation verifies whether a given candidate DTCBF is valid, when a corresponding control policy is unknown. The approach is demonstrated on the cart-pole system. 
 
