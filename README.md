@@ -20,7 +20,7 @@ This repository provides implementations of methods for:
 ## Repository Structure
 
 - `verification_DTCBFs/` → Code for the verification algorithm.  
-- `synthesis_DTCBFs_bilevel/` → Code for the synthesis algorithm.  
+- `synthesis_DTCBFs_Bilevel/` → Code for the synthesis algorithm.  
 
 Both are demonstrated on the discretized cart-pole system, explained below.
 
