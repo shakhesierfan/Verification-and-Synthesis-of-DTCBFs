@@ -64,7 +64,7 @@ As a cross-check, we then verify whether the synthesized DTCBF is valid through 
 If you find this code useful, please cite our paper
 
 @article{Shakhesi2025DTCBFs,
-  title     = {Verification and Synthesis of Discrete-Time Control Barrier Functions (DTCBFs)},
+  title     = {Verification and Synthesis of Discrete-Time Control Barrier Functions},
   author    = {Erfan Shakhesi and W.P.M.H. Heemels and Alexander Katriniok},
   journal   = {IEEE Transactions on Automatic Control},
   year      = {2025}
