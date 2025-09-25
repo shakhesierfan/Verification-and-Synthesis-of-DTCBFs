@@ -15,7 +15,7 @@ This repository provides implementations of methods for:
    - A bilevel optimization approach for synthesizing both a DTCBF and a control policy in finite time.  
    - Determines unknown coefficients of parameterized DTCBFs and policies.
    
-For more details on the underlying theory, see the paper **[Verification and Synthesis of Discrete-Time Control Barrier Functions](https://arxiv.org/pdf/2509.18685)**  
+For more details on the underlying theory, see the paper **[Verification and Synthesis of Discrete-Time Control Barrier Functions](https://arxiv.org/pdf/2509.18685)**.  
 
 ---
 
